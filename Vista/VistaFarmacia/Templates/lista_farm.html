@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacias y Catálogos</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+</head>
+<body>
+    <div class="container py-4">
+        <h1 class="text-center mb-4 text-primary">
+            <i class="bi bi-shop"></i> Farmacias y sus catálogos
+        </h1>
+
+        <div class="row g-4">
+            {% for farmacia in farmacias %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h3 class="h5 mb-0">
+                            <i class="bi bi-building"></i> {{ farmacia.nombre }}
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <i class="bi bi-geo-alt-fill text-secondary"></i> 
+                            <strong>Ubicación:</strong> {{ farmacia.direccion }}
+                        </p>
+                        
+                        <h5 class="mt-3 text-secondary">
+                            <i class="bi bi-capsule"></i> Medicamentos
+                        </h5>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for medicamento in Medicamentos %}
+                                    {% if medicamento.laboratorio == farmacia.laboratorios.laboratorio %}
+                                    <tr>
+                                        <td>
+                                            <strong>{{ medicamento.nombre_comercial }}</strong><br>
+                                            <small class="text-muted">{{ medicamento.nombre_farmacologico }}</small>
+                                        </td>
+                                        <td class="text-nowrap">
+                                            <button class="btn btn-sm btn-outline-warning">
+                                                <i class="bi bi-pencil-square"></i> Editar
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <small class="text-muted">
+                            <i class="bi bi-info-circle"></i> {{ farmacia.laboratorios.laboratorio }}
+                        </small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}
