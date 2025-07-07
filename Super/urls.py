@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Controlador.ControladorUsuario import PerfilController
-from Controlador.ControladorMedicamentos import MedicamentoContrller
+from Controlador.ControladorMedicamentos import MedicamentoController
 from Controlador.ControladorFarmacia import FarmaciaController
 from Controlador.ControladorLaboratorio import LaboratorioController
 
@@ -28,10 +28,11 @@ urlpatterns = [
     path('perfiles/', PerfilController.perfiles, name='perfiles'),
     path('logout/', PerfilController.signout, name='signout'),
     path('signin/', PerfilController.signin, name='signin'),
-    path('registrar/', MedicamentoContrller.registrar_medicamento, name='registrar_medicamento'),
-    path('lista/', MedicamentoContrller.lista_medicamentos, name='lista_medicamentos'),
+    path('registrar/', MedicamentoController.registrar_medicamento, name='registrar_medicamento'),
+    path('lista/', MedicamentoController.lista_medicamentos, name='lista_medicamentos'),
     path('labs/', LaboratorioController.labs, name='labs'),
     path('crear_labs/', LaboratorioController.crear_labs, name='crear_labs'),
+    path('modificar_labs/<int:id>/', LaboratorioController.modificar_labs, name='modificar_labs'),
 
     path('registro_farm/', FarmaciaController.registrar_farmacia, name='agregar_farmacia'),
     path('lista_farm/', FarmaciaController.lista_farm, name='lista_farmacias'),
