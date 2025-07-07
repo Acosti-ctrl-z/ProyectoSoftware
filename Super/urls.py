@@ -34,7 +34,8 @@ urlpatterns = [
     path('eliminar/<int:id>/', MedicamentoController.eliminar_medicamento, name='eliminar_medicamento'),
     path('labs/', LaboratorioController.labs, name='labs'),
     path('crear_labs/', LaboratorioController.crear_labs, name='crear_labs'),
-        path('modificar_labs/<int:id>/', LaboratorioController.modificar_labs, name='modificar_labs'),
+    path('modificar_labs/<int:id>/', LaboratorioController.modificar_labs, name='modificar_labs'),
+    path('ver_historial/<int:id>/', LaboratorioController.ver_historial, name='historial_labs'),
 
     path('registro_farm/', FarmaciaController.registrar_farmacia, name='agregar_farmacia'),
     path('lista_farm/', FarmaciaController.lista_farm, name='lista_farmacias'),
