@@ -28,7 +28,9 @@
                     <td>{{ medicamento.laboratorio }}</td>
                     <td>{{ medicamento.componentes|truncatechars:50 }}</td>
                     <td>
-                        <a href="#" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'editar_medicamento' medicamento.id %}" class="btn btn-sm btn-warning">Editar</a>
+                        <a href="{% url 'eliminar_medicamento' medicamento.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                        
                     </td>
                 </tr>
                 {% empty %}
