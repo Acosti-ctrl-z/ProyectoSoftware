@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse
+from Modelo.ModeloFarmacia.Farmacias.models import Farmacia
 from Modelo.ModeloLaboratorio.Laboratorios.forms import NuevoLaboratorio
 from Modelo.ModeloLaboratorio.Laboratorios.models import Laboratorios
+from Modelo.ModeloMedicamentos.Medicamentos.models import Medicamento
 
 # Create your views here.
 def labs(request):
@@ -30,3 +32,13 @@ def modificar_labs(request, id):
         form = NuevoLaboratorio(instance=laboratorios)
     
     return render(request, 'modificar_labs.html', {'form': form, 'lab': laboratorios})
+
+def ver_historial(request, id):
+    laboratorio = get_object_or_404(Laboratorios, pk=id)
+    medicamentos = Medicamento.objects.filter(laboratorio=laboratorio)
+    farmacias = Farmacia.objects.filter(laboratorios=laboratorio)
+    return render(request, 'historial_labs.html', {
+        'laboratorio': laboratorio,
+        'medicamentos': medicamentos,
+        'farmacias': farmacias,
+    })
