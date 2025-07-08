@@ -36,7 +36,7 @@ urlpatterns = [
     path('crear_labs/', LaboratorioController.crear_labs, name='crear_labs'),
     path('modificar_labs/<int:id>/', LaboratorioController.modificar_labs, name='modificar_labs'),
     path('ver_historial/<int:id>/', LaboratorioController.ver_historial, name='historial_labs'),
-
+    path('farmacias/modificar/<int:id>/', FarmaciaController.modificar_farmacia, name='modificar_farmacia'),
     path('registro_farm/', FarmaciaController.registrar_farmacia, name='agregar_farmacia'),
     path('lista_farm/', FarmaciaController.lista_farm, name='lista_farmacias'),
 ]
